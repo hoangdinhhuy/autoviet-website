@@ -23,6 +23,7 @@
       const r = await fetch('api/cars', { signal: AbortSignal.timeout(3500) });
       if (!r.ok) throw 0;
       const d = await r.json();
+      if (!d.cars || !d.cars.length) throw 0;
       CARS = d.cars; PACKAGES = d.cars[0].packages;
     } catch {
       CARS = window.__FALLBACK.cars; PACKAGES = window.__FALLBACK.packages;
